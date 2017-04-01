@@ -1,0 +1,51 @@
+﻿@using MvcApplication1.Extensions
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+@model MvcApplication1.Models.LoginModel
+
+<style>
+    .margin-5px {
+        margin: 5px;
+    }
+
+    .col-centered {
+        float: none;
+        margin: 0 auto;
+    }
+
+    .validation-summary-valid.alert-danger {
+        display: none;
+    }
+
+    .btn-mybutton {
+        background-color: green;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+
+        @using (Html.BeginForm("LogMeIn", "Login", new { ReturnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+        {
+        <h2 class="text-center">Please sign in</h2>
+        @Html.TextBoxFor(x => x.UserName, new {  @class = "form-control margin-5px", placeholder = "User" })
+        @Html.PasswordFor(x => x.Password, new { @class = "form-control margin-5px", placeholder = "Password" })
+
+        <button class="btn btn-lg btn-info btn-block margin-5px" type="submit">Sign in</button>
+        }
+        <div class="row" style="margin:5px">
+            @Html.MyValidationSummary()
+        </div>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<div class="row">
+    <div>User : test</div>
+    <div>
+        Password : test
+    </div>
+</div>

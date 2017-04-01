@@ -1,0 +1,119 @@
+﻿@model MvcApplication1.Models.CalculatorModel
+
+@{
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+
+
+
+
+<div class="row-fluid">
+
+    <div class="span6 well">
+
+            <div class="row" style="margin-bottom:5px">
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="txtinput" value="" />
+            </div>
+            <div class="col-md-2">
+                <input class="form-control" type="text" id="txtresult" value="" disabled />
+            </div>
+             <div class="col-md-8">                
+              </div>
+            </div>
+            <div class="row-fluid">
+                <a href="#" class="btn btn-info number" data-key="7">7</a>
+                <a href="#" class="btn btn-info number" data-key="8">8</a>
+                <a href="#" class="btn btn-info number" data-key="9">9</a>
+                <a href="#" class="btn btn-info mathsign" data-constant="MIN" data-key="-">-</a>
+                <a href="#" class="btn btn-info mathsign" data-constant="SUM" data-key="+">+</a>
+            </div>
+            <div class="row-fluid">
+                <a href="#" class="btn btn-info number" data-key="4">4</a>
+                <a href="#" class="btn btn-info number" data-key="5">5</a>
+                <a href="#" class="btn btn-info number" data-key="6">6</a>
+                <a href="#" class="btn btn-info mathsign" data-constant="DIV" data-key="/">/</a>
+                <a href="#" class="btn btn-info mathsign" data-constant="MULT" data-key="*">*</a>
+            </div>
+            <div class="row-fluid">
+                <a href="#" class="btn btn-info number" data-key="1">1</a>
+                <a href="#" class="btn btn-info number" data-key="2">2</a>
+                <a href="#" class="btn btn-info number" data-key="3">3</a>
+                <a href="#" class="btn btn-primary calculate" data-method="calculate" data-key="=">=</a>
+                <a href="#" class="btn btn-danger clear" data-method="reset" data-key="8">C</a>
+
+            </div>
+            <div class="row-fluid">
+                <a href="#" class="btn btn-info" data-key="46">.</a>
+                <a href="#" class="btn btn-info number" data-key="0">0</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <script type="text/javascript">
+        var singleNumber = '';
+        var viewData = {
+          //  selectedNumbers: [],
+          //  selectedMathSigns: [],
+            result: 0,
+            FullInput:''
+        };
+        $(function () {
+            $('.number').click(function () {
+                debugger;
+                singleNumber+=$(this).data('key');
+               // viewData.selectedNumbers.push($(this).data('key'));                
+                var temp = $('#txtinput').val() + $(this).data('key');
+                
+                $('#txtinput').val(temp)
+
+            });
+            $('.mathsign').click(function () {
+               //  viewData.selectedMathSigns.push($(this).data('key'));
+                debugger;
+               // viewData.selectedNumbers.push(singleNumber);
+                singleNumber = '';
+                var temp = $('#txtinput').val() + $(this).data('key');
+                $('#txtinput').val(temp)
+            });
+            $('.clear').click(function () {
+              //  viewData.selectedMathSigns = [];
+               // viewData.selectedNumbers = [];
+                viewData.result = 0;
+                singleNumber = '';
+                $('#txtinput , #txtresult').val(0);
+
+            });
+
+            $('.calculate').click(function () {
+                if (singleNumber != '') {
+                   // viewData.selectedNumbers.push(singleNumber);
+                    singleNumber = '';
+                }
+                viewData.FullInput = $('#txtinput').val();
+                jQuery.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Calculate")",
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(viewData),
+            success: function (data) {
+                singleNumber = data.result;
+                $('#txtresult').val($('#txtinput').val());
+                $('#txtinput').val(data.result);
+                
+            },
+            failure: function (errMsg) {
+                alert(errMsg);
+            }
+            });
+        });
+
+    });
+
+    </script>

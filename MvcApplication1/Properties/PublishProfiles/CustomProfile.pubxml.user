@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAPCk0zBSu/EiiYMXvWh5fXAAAAAACAAAAAAAQZgAAAAEAACAAAACgYCPK55M/9KjRLquXldaGt8PBcoTNa4KTDY5cB/S7XQAAAAAOgAAAAAIAACAAAAALB7lnae6q0v+b0ICHgkOv07FXGjJ9o0Vji0JDKHFUryAAAADbNl3Xb6Ovz5pUBj6P5R46ip9OSDeo2E0OXiZwt7egfkAAAAB8hg9BUlg5Rze/8xa+6LoFWE7tCKhPhlKV0T5H1DAo+dB0O1XaZ6ockmAOJB2fHJdCwwcyMs9fNKjO6ABNPwzD</EncryptedPassword>
+    <_PublishTargetUrl>ftp://ilhanaksu.com/calculator.ilhanaksu.com</_PublishTargetUrl>
+  </PropertyGroup>
+</Project>
